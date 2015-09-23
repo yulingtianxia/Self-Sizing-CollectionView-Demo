@@ -39,8 +39,8 @@ class ViewController: UICollectionViewController {
     }
     
     override func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
-        println(kind)
-        return collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: "selfsizingheader", forIndexPath: indexPath) as! UICollectionReusableView
+        print(kind)
+        return collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: "selfsizingheader", forIndexPath: indexPath) 
     }
     
 }
