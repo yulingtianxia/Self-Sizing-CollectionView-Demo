@@ -10,7 +10,7 @@ import UIKit
 
 let text = "The UICollectionViewFlowLayout class is a concrete layout object that organizes items into a grid with optional header and footer views for each section. The items in the collection view flow from one row or column (depending on the scrolling direction) to the next, with each row comprising as many cells as will fit. Cells can be the same sizes or different sizes."
 
-let strings = text.componentsSeparatedByString(" ")
+let strings = text.components(separatedBy: " ")
 class ViewController: UICollectionViewController {
     
     override func viewDidLoad() {
@@ -24,23 +24,23 @@ class ViewController: UICollectionViewController {
         // Dispose of any resources that can be recreated.
     }
 
-    override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+    override func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
     
-    override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return strings.count
     }
     
-    override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("selfsizingcell", forIndexPath: indexPath) as! SelfSizingCell
+    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "selfsizingcell", for: indexPath) as! SelfSizingCell
         cell.textLabel.text = strings[indexPath.item]
         return cell
     }
     
-    override func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
+    override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         print(kind)
-        return collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: "selfsizingheader", forIndexPath: indexPath) 
+        return collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "selfsizingheader", for: indexPath) 
     }
     
 }
