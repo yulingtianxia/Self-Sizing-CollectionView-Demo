@@ -11,9 +11,10 @@ import UIKit
 class SelfSizingCell: UICollectionViewCell {
     @IBOutlet weak var textLabel: UILabel!
     
-    override func preferredLayoutAttributesFittingAttributes(layoutAttributes: UICollectionViewLayoutAttributes) -> UICollectionViewLayoutAttributes {
-        let attributes = super.preferredLayoutAttributesFittingAttributes(layoutAttributes)
-        attributes.frame = NSString(string: textLabel.text!).boundingRectWithSize(CGSize(width: intmax_t(), height: Int(textLabel.frame.size.height)), options: NSStringDrawingOptions.UsesLineFragmentOrigin, attributes: [NSFontAttributeName:textLabel.font], context: nil)
+    override func preferredLayoutAttributesFitting(_ layoutAttributes: UICollectionViewLayoutAttributes) -> UICollectionViewLayoutAttributes {
+        let attributes = super.preferredLayoutAttributesFitting(layoutAttributes)
+        let maxBounds = CGRect.init(x: 0, y: 0, width: .greatestFiniteMagnitude, height: textLabel.frame.size.height)
+        attributes.frame = textLabel.textRect(forBounds: maxBounds, limitedToNumberOfLines: textLabel.numberOfLines)
         return attributes
     }
 }
